@@ -6,7 +6,7 @@ Using google safe browsing API to detect whether the URL is safe.
 
 Make sure that you're enabled the SafeBrowsing API in your google cloud console:
 
-- **STEP 1:** Go to https://console.cloud.google.com/apis/library/safebrowsing.googleapis.com
+- **STEP 1:** Go to <https://console.cloud.google.com/apis/library/safebrowsing.googleapis.com>
 - **STEP 2:** Choose your current project
 - **STEP 3:** Press `Enable`
 
