@@ -7,7 +7,7 @@ import 'threat_entry_meta_data.dart';
 import 'threat_entry_type.dart';
 import 'threat_type.dart';
 
-class Match {
+class ThreatMatch {
   final ThreatType threatType;
   final PlatformType platformType;
   final ThreatEntryType threatEntryType;
@@ -16,7 +16,7 @@ class Match {
   final String cacheDuration;
 
   /// Matched threat
-  const Match({
+  const ThreatMatch({
     required this.threatType,
     required this.platformType,
     required this.threatEntryType,
@@ -26,20 +26,22 @@ class Match {
   });
 
   /// Convert the result as String to List<Match>
-  static List<Match> matchesFromJson(String str) {
+  static List<ThreatMatch> matchesFromJson(String str) {
     return matchesFromMap(jsonDecode(str));
   }
 
   /// Convert the result as Map to List<Match>
-  static List<Match> matchesFromMap(Map<String, dynamic> json) {
-    return List<Match>.from(json["matches"].map((x) => Match.fromMap(x)));
+  static List<ThreatMatch> matchesFromMap(Map<String, dynamic> json) {
+    return List<ThreatMatch>.from(
+        json["matches"].map((x) => ThreatMatch.fromMap(x)));
   }
 
   /// Convert String to Match
-  factory Match.fromJson(String str) => Match.fromMap(json.decode(str));
+  factory ThreatMatch.fromJson(String str) =>
+      ThreatMatch.fromMap(json.decode(str));
 
   /// Convert Map to Match
-  factory Match.fromMap(Map<String, dynamic> json) => Match(
+  factory ThreatMatch.fromMap(Map<String, dynamic> json) => ThreatMatch(
         threatType: ThreatType.values.byName(json["threatType"]),
         platformType: PlatformType.values.byName(json["platformType"]),
         threatEntryType: ThreatEntryType.values.byName(json["threatEntryType"]),

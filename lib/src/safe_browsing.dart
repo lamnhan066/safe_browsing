@@ -4,11 +4,12 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
 import 'package:safe_browsing/src/models/safe_browsing_state.dart';
+import 'package:safe_browsing/src/models/safe_browsing_state_type.dart';
 import 'package:safe_browsing/src/models/threat_entry.dart';
 import 'package:safe_browsing/src/models/threat_entry_type.dart';
 
-import 'models/match.dart' as match;
 import 'models/platform_type.dart';
+import 'models/threat_match.dart';
 import 'models/threat_type.dart';
 
 class SafeBrowsing {
@@ -43,13 +44,9 @@ class SafeBrowsing {
   Future<bool?> isUrlSafe(String url) async {
     final result = await checkUrl(url);
 
-    if (result == SafeBrowsingState.safe) {
-      return true;
-    } else if (result == SafeBrowsingState.notSafe) {
-      return false;
-    }
+    if (result.isError) return null;
 
-    return null;
+    return result.isSafe;
   }
 
   /// Check a specific URL
@@ -84,10 +81,9 @@ class SafeBrowsing {
     /// Version of the client (clientVersion)
     String version = '1.5.2',
   }) async {
-    SafeBrowsingState.matches = [];
     if (entries.isEmpty) {
       _print('This URL is empty');
-      return SafeBrowsingState.empty;
+      return SafeBrowsingState(SafeBrowsingStateType.empty);
     }
 
     final apiKey = options.apiKey;
@@ -124,24 +120,23 @@ class SafeBrowsing {
 
         if (isSafe) {
           _print('This URL is safe');
-          return SafeBrowsingState.safe;
+          return SafeBrowsingState(SafeBrowsingStateType.safe);
         } else {
-          final matches = match.Match.matchesFromMap(jsonBody);
+          final matches = ThreatMatch.matchesFromMap(jsonBody);
           _print('This URL is not safe: $matches');
-          SafeBrowsingState.matches = matches;
-          return SafeBrowsingState.notSafe;
+          return SafeBrowsingState(SafeBrowsingStateType.notSafe, matches);
         }
       }
     } on HttpException catch (e) {
       _print('Cannot complete the request: ${e.message}');
-      return SafeBrowsingState.requestError;
+      return SafeBrowsingState(SafeBrowsingStateType.requestError);
     } catch (e) {
       _print('Cannot complete the request with unknow error: $e');
       rethrow;
     }
 
     _print('This area may not be reached');
-    return SafeBrowsingState.unknown;
+    return SafeBrowsingState(SafeBrowsingStateType.unknown);
   }
 
   void _print(Object? object) =>

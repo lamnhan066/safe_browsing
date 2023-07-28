@@ -1,22 +1,28 @@
-import 'package:safe_browsing/src/models/match.dart';
+import 'package:safe_browsing/src/models/safe_browsing_state_type.dart';
+import 'package:safe_browsing/src/models/threat_match.dart';
 
 /// Result state of the Safe Browsing
-enum SafeBrowsingState {
-  /// Safe
-  safe,
-
-  /// Not safe. See `SafeBrowsingState.matches` for more information.
-  notSafe,
-
-  /// Empty threat entry
-  empty,
-
-  /// Error with the request
-  requestError,
-
-  /// Unknow error
-  unknown;
+class SafeBrowsingState {
+  /// Type of the state
+  final SafeBrowsingStateType type;
 
   /// List of matched threats
-  static List<Match> matches = const [];
+  final List<ThreatMatch> matches;
+
+  /// The entries are safe.
+  ///
+  /// Please notice that `!isSafe` is different from `isNotSafe` because `!isSafe` may includes
+  /// the errors.
+  bool get isSafe => type == SafeBrowsingStateType.safe;
+
+  /// Is not safe without errors.
+  ///
+  /// Please notice that `!isNotSafe` is different from `isSafe` because `!isNotSafe` may includes
+  /// the errors.
+  bool get isNotSafe => type == SafeBrowsingStateType.notSafe;
+
+  /// Any error occurs
+  bool get isError => !isSafe && !isNotSafe;
+
+  SafeBrowsingState(this.type, [this.matches = const []]);
 }

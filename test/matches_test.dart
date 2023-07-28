@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:safe_browsing/src/models/match.dart';
+import 'package:safe_browsing/src/models/threat_match.dart';
 
 String matchesString = '''
 {
@@ -34,12 +34,12 @@ String matchesString = '''
 
 void main() {
   test('Matches', () {
-    final matches = Match.matchesFromMap(jsonDecode(matchesString));
+    final matches = ThreatMatch.matchesFromMap(jsonDecode(matchesString));
 
     expect(matches.length, equals(2));
     expect(matches.first.threat.url, 'http://www.urltocheck1.org/');
-    for (final match in matches) {
-      print('$match\n');
-    }
+    // for (final match in matches) {
+    // print('$match\n');
+    // }
   });
 }
