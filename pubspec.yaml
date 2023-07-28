@@ -1,6 +1,6 @@
 name: safe_browsing
 description: Using google safe browsing API to detect whether the URL is safe.
-version: 0.1.0-rc.2
+version: 0.1.0-rc.3
 homepage: https://github.com/vnniz/safe_browsing
 
 environment:

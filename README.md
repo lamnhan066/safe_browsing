@@ -44,13 +44,13 @@ state.isError // Means there is issue with the request
 
 Please notice that the `!state.isSafe` is different from `state.isNotSafe` because the `state.isError` maybe occured.
 
-More specific result by using `state.type`:
+### More specific result by using `state.type`
 
 ``` dart
 /// Safe
 SafeBrowsingStateType.safe
 
-/// Not safe. See `SafeBrowsingState.matches` for the details.
+/// Not safe. See `state.matches` for the details.
 SafeBrowsingStateType.notSafe
 
 /// Empty input
@@ -61,6 +61,12 @@ SafeBrowsingStateType.requestError
 
 /// Unknow error
 SafeBrowsingStateType.unknown
+```
+
+### Get the list of `TheatMatch`s when the `state.isNotSafe`
+
+``` dart
+final listThreatMatches = state.matches;
 ```
 
 ## Advanced
