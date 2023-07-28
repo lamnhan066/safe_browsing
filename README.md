@@ -14,7 +14,7 @@ Make sure that you're enabled the SafeBrowsing API in your google cloud console:
 
 This plugin requires you to use `flutterfire_cli` to create the `DefaultFirebaseOptions` for your project. [Read more](https://firebase.flutter.dev/).
 
-Create the instance
+### Create the instance
 
 ``` dart
 /// Create the instance from the `DefaultFirebaseOptions`
@@ -34,26 +34,33 @@ final state = await safeBrowsing.checkUrl(url);
 final isSafe = await safeBrowsing.isUrlSafe(url);
 ```
 
-Result state of the checking:
+### Result state of the checking
+
+``` dart
+state.isSafe // Means the result is safe
+state.isNotSafe // Means the result is not safe. Different with `!state.isSafe`
+state.isError // Means there is issue with the request
+```
+
+Please notice that the `!state.isSafe` is different from `state.isNotSafe` because the `state.isError` maybe occured.
+
+More specific result by using `state.type`:
 
 ``` dart
 /// Safe
-SafeBrowsingState.safe
+SafeBrowsingStateType.safe
 
-/// Not safe. See `SafeBrowsingState.matches` for more information.
-SafeBrowsingState.notSafe
+/// Not safe. See `SafeBrowsingState.matches` for the details.
+SafeBrowsingStateType.notSafe
 
-/// Empty threat entry
-SafeBrowsingState.empty
+/// Empty input
+SafeBrowsingStateType.empty
 
 /// Error with the request
-SafeBrowsingState.requestError
+SafeBrowsingStateType.requestError
 
 /// Unknow error
-SafeBrowsingState.unknown
-
-/// List of matched threats as List<Match>
-SafeBrowsingState.matches
+SafeBrowsingStateType.unknown
 ```
 
 ## Advanced

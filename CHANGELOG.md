@@ -1,3 +1,10 @@
+## 0.1.0-rc.2
+
+* Rename `Match` to `ThreatMatch` to avoid duplicate with the Flutter default class.
+* `SafeBrowsingState` is now a class with different parameters from the older one.
+* Add `type`, `matches`, `isSafe`, `isNotSafe` and `isError` to `SafeBrowsingState`.
+* Add `SafeBrowsingStateType` to replace the older `SafeBrowsingState` enum.
+
 ## 0.1.0-rc.1
 
 * Remove `cannotLaunch`, `invalidURL` from `SafeBrowsingState`.
