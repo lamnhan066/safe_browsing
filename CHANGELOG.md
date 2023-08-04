@@ -1,3 +1,7 @@
+## 0.1.0
+
+* Release to stable.
+
 ## 0.1.0-rc.3
 
 * Improve README
