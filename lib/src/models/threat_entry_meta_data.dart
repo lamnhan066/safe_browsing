@@ -3,7 +3,7 @@ import 'dart:convert';
 class ThreatEntryMetadata {
   final List<Entry> entries;
 
-  /// Meta data of the threat
+  /// Meta data of the threat.
   const ThreatEntryMetadata({
     required this.entries,
   });
@@ -27,7 +27,7 @@ class Entry {
   final String key;
   final String value;
 
-  /// Entry of the threat
+  /// Entry of the threat.
   const Entry({
     required this.key,
     required this.value,

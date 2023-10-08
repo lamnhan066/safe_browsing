@@ -1,17 +1,17 @@
 /// Result state of the Safe Browsing
 enum SafeBrowsingStateType {
-  /// Safe
+  /// Safe.
   safe,
 
   /// Not safe. See `SafeBrowsingState.matches` for more information.
   notSafe,
 
-  /// Empty threat entry
+  /// Empty threat entry.
   empty,
 
-  /// Error with the request
+  /// Error with the request.
   requestError,
 
-  /// Unknow error
+  /// Unknow error.
   unknown;
 }

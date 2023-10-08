@@ -1,7 +1,7 @@
 name: safe_browsing
 description: Using google safe browsing API to detect whether the URL is safe.
-version: 0.1.0
-homepage: https://github.com/vnniz/safe_browsing
+version: 0.1.1
+homepage: https://github.com/lamnhan066/safe_browsing
 
 environment:
   sdk: ">=2.18.0 <4.0.0"
@@ -10,14 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^2.9.0
+  firebase_core: ^2.17.0
   http: ^1.1.0
-  url_launcher: ^6.1.10
+  url_launcher: ^6.1.14
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.3
 
 flutter:
   plugin:

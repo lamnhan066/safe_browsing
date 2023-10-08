@@ -13,7 +13,7 @@ import 'models/threat_match.dart';
 import 'models/threat_type.dart';
 
 class SafeBrowsing {
-  /// Use this method to validate the URL
+  /// Use this method to validate the URL.
   static bool validateUrl(String url) {
     String patttern =
         r'(http|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?';
@@ -32,7 +32,7 @@ class SafeBrowsing {
   /// Procide the configuration of the firebase.
   final FirebaseOptions options;
 
-  /// Print the debug log
+  /// Print the debug log.
   final bool debugLog;
 
   /// Returns:
@@ -40,7 +40,7 @@ class SafeBrowsing {
   ///   `false` if it's not safe
   ///   `null` if there is error occurred
   ///
-  /// Use [check] to have more settings and a better result message with [SafeBrowsingState]
+  /// Use [check] to have more settings and a better result message with [SafeBrowsingState].
   Future<bool?> isUrlSafe(String url) async {
     final result = await checkUrl(url);
 
@@ -49,18 +49,18 @@ class SafeBrowsing {
     return result.isSafe;
   }
 
-  /// Check a specific URL
+  /// Check a specific URL.
   ///
-  /// Use [check] to have more settings and a better result message with [SafeBrowsingState]
+  /// Use [check] to have more settings and a better result message with [SafeBrowsingState].
   Future<SafeBrowsingState> checkUrl(String url) async {
     return check([ThreatEntry(url: url)]);
   }
 
   /// Check whether the given url is safe.
   Future<SafeBrowsingState> check(
-    /// Threat entries
+    /// Threat entries.
     List<ThreatEntry> entries, {
-    /// Threat types
+    /// Threat types.
     List<ThreatType> threatTypes = const [
       ThreatType.MALWARE,
       ThreatType.SOCIAL_ENGINEERING,
@@ -68,17 +68,17 @@ class SafeBrowsing {
       ThreatType.POTENTIALLY_HARMFUL_APPLICATION,
     ],
 
-    /// Platform types
+    /// Platform types.
     List<PlatformType> platformTypes = const [
       PlatformType.ALL_PLATFORMS,
     ],
 
-    /// Threat entry types
+    /// Threat entry types.
     List<ThreatEntryType> threatEntryTypes = const [
       ThreatEntryType.URL,
     ],
 
-    /// Version of the client (clientVersion)
+    /// Version of the client (clientVersion).
     String version = '1.5.2',
   }) async {
     if (entries.isEmpty) {

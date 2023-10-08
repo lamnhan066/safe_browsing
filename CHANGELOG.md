@@ -1,3 +1,8 @@
+## 0.1.1
+
+* Update comments.
+* Update homepage URL.
+
 ## 0.1.0
 
 * Release to stable.

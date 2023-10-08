@@ -10,7 +10,7 @@ class ThreatEntry {
   /// The digest of an executable in SHA256 format. The API supports both binary and hex digests.
   final String digest;
 
-  /// Entry of the threat
+  /// Entry of the threat.
   ThreatEntry({this.hash = '', this.url = '', this.digest = ''}) {
     assert(
       hash.isNotEmpty || url.isNotEmpty || digest.isNotEmpty,

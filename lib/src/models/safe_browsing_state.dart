@@ -1,12 +1,11 @@
 import 'package:safe_browsing/src/models/safe_browsing_state_type.dart';
 import 'package:safe_browsing/src/models/threat_match.dart';
 
-/// Result state of the Safe Browsing
 class SafeBrowsingState {
-  /// Type of the state
+  /// Type of the state.
   final SafeBrowsingStateType type;
 
-  /// List of matched threats
+  /// List of matched threats.
   final List<ThreatMatch> matches;
 
   /// The entries are safe.
@@ -21,8 +20,9 @@ class SafeBrowsingState {
   /// the errors.
   bool get isNotSafe => type == SafeBrowsingStateType.notSafe;
 
-  /// Any error occurs
+  /// Any error occurs.
   bool get isError => !isSafe && !isNotSafe;
 
+  /// Result state of the Safe Browsing.
   SafeBrowsingState(this.type, [this.matches = const []]);
 }
